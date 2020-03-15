@@ -1,0 +1,37 @@
+{
+  "name": "react-native-bottom-modal",
+  "version": "0.5.0",
+  "description": "React native bottom modal component",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "repository": { "type": "git", "url": "https://github.com/Vidlec/react-native-bottom-modal.git"},
+  "author": "Josef Vidlák",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf lib"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.23",
+    "@types/react-native": "^0.60.25",
+    "prettier": "^1.19.1",
+    "react": "^16.13.0",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3",
+    "react-spring": "^9.0.0-beta.34",
+    "react-native": ">=0.59",
+    "react-native-gesture-handler": "~1.6.0"
+  },
+  "peerDependencies": {
+    "react-native-gesture-handler": "~1.6.0",
+    "react": ">=16.8",
+    "react-native": ">=0.59",
+    "react-spring": "^9.0.0-beta.34"
+  },
+  "dependencies": {
+  }
+}
