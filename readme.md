@@ -2,7 +2,8 @@
 
 ## Install
 ### Expo
-`expo install react react-native-gesture-handler  `
+`expo install react react-native-gesture-handler`
+
 `yarn add react-spring react-native-bottom-modal`
 ### Bare
 `yarn add react-spring react-native-bottom-modal react-native-gesture-handler`
