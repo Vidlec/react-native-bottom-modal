@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import { Dimensions, View } from 'react-native'
+import { Dimensions, TouchableOpacity, View } from 'react-native'
 import { PanGestureHandler, State as GestureState } from 'react-native-gesture-handler'
 import { animated, useSpring } from 'react-spring'
 
@@ -88,26 +88,27 @@ export const BottomModalProvider: React.FC = ({ children }) => {
             alignItems: 'center',
           }}
         >
-          <View
-            style={{
-              opacity: 0.8,
-              zIndex: 1,
-              height: '100%',
-              width: '100%',
-              flex: 1,
-              backgroundColor: 'black',
-              position: 'absolute',
-            }}
-            onTouchEnd={() => resetState()}
-          />
+          <TouchableOpacity activeOpacity={1} onPress={() => resetState()}>
+            <View
+              style={{
+                opacity: 0.8,
+                zIndex: 1,
+                height: '100%',
+                width: '100%',
+                flex: 1,
+                backgroundColor: 'black',
+                position: 'absolute',
+              }}
+            />
+          </TouchableOpacity>
           <AnimatedContentContainer
             style={{
               height,
-              bottom: spring.value.to({
+              bottom: spring.value.interpolate({
                 range: [0, height],
                 output: [-height, 0],
                 extrapolate: 'clamp',
-              }),
+              } as any),
               paddingTop: 25,
               position: 'absolute',
               zIndex: 3,

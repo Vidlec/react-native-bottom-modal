@@ -8,4 +8,9 @@ export const Container = styled(View)`
   justify-content: center;
 `
 
-export const StyledModal = styled(Surface)``
+export const StyledModal = styled(Surface)`
+  flex: 1;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
+`
