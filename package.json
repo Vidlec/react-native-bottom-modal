@@ -1,13 +1,16 @@
 {
   "name": "react-native-bottom-modal",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React native bottom modal component",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
-  "repository": { "type": "git", "url": "https://github.com/Vidlec/react-native-bottom-modal.git"},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vidlec/react-native-bottom-modal.git"
+  },
   "author": "Josef Vidlák",
   "license": "MIT",
   "private": false,
@@ -32,6 +35,5 @@
     "react-native": ">=0.59",
     "react-spring": "^9.0.0-beta.34"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
