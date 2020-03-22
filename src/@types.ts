@@ -6,6 +6,7 @@ export interface ShowModalFnProps {
 
 export type ShowModalObject = {
   content: ReactNode
+  header?: ReactNode
 } & Partial<Options>
 export type ShowModalRenderFn = (props: ShowModalFnProps) => ShowModalObject
 

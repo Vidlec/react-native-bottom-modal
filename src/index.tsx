@@ -20,12 +20,14 @@ const defaultOptions: Options = {
 
 interface State {
   content: React.ReactNode
+  header?: React.ReactNode
   options: Options
 }
 
 export const BottomModalProvider: React.FC = ({ children }) => {
-  const [{ content, options: stateOptions }, setState] = useState<State>({
+  const [{ content, header, options: stateOptions }, setState] = useState<State>({
     content: null,
+    header: null,
     options: defaultOptions,
   })
 
@@ -35,7 +37,7 @@ export const BottomModalProvider: React.FC = ({ children }) => {
     value: 0,
     opacity: 0,
   }))
-  const resetState = () => setState(({ options }) => ({ content: null, options }))
+  const resetState = () => setState(({ options }) => ({ content: null, header: null, options }))
 
   useEffect(() => {
     set({ value: content ? height : 0, opacity: content ? 1 : 0, config: { duration: 200 } })
@@ -47,78 +49,84 @@ export const BottomModalProvider: React.FC = ({ children }) => {
 
   const showModal = useCallback((render: ShowModalFn) => {
     if (typeof render === 'function') {
-      const { content, ...options } = render({ close: closeModal })
-      return setState({ content, options: { ...stateOptions, ...options } })
+      const { content, header, ...options } = render({ close: closeModal })
+      return setState({ content, header, options: { ...stateOptions, ...options } })
     }
 
-    const { content, ...options } = render
-    setState({ content, options: { ...stateOptions, ...options } })
+    const { content, header, ...options } = render
+    setState({ content, header, options: { ...stateOptions, ...options } })
   }, [])
 
   return (
     <ModalProviderContext.Provider value={{ showModal, closeModal }}>
       {children}
-      <PanGestureHandler
-        onHandlerStateChange={e => {
-          if (e.nativeEvent.state === GestureState.END) {
-            const value = height - e.nativeEvent.translationY
-
-            if (e.nativeEvent.velocityY > 100) {
-              return resetState()
-            }
-            if (value < closeTreshold) resetState()
-            if (value >= closeTreshold) set({ value: height, config: { duration: 200 } })
-          }
-        }}
-        onGestureEvent={e => {
-          const value = height - e.nativeEvent.translationY
-          set({ value, config: { duration: 50 } })
+      <AnimatedContainer
+        style={{
+          opacity: spring.opacity,
+          display: spring.opacity.interpolate(v => (v > 0 ? 'flex' : 'none')),
+          zIndex: 1,
+          height: '100%',
+          width: '100%',
+          flex: 1,
+          position: 'absolute',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        <AnimatedContainer
-          style={{
-            opacity: spring.opacity,
-            display: spring.opacity.interpolate(v => (v > 0 ? 'flex' : 'none')),
-            zIndex: 1,
-            height: '100%',
-            width: '100%',
-            flex: 1,
-            position: 'absolute',
-            justifyContent: 'center',
-            alignItems: 'center',
+        <PanGestureHandler
+          onHandlerStateChange={e => {
+            if (e.nativeEvent.state === GestureState.END) {
+              const value = height - e.nativeEvent.translationY
+
+              if (e.nativeEvent.velocityY > 100) {
+                return resetState()
+              }
+              if (value < closeTreshold) resetState()
+              if (value >= closeTreshold) set({ value: height, config: { duration: 200 } })
+            }
+          }}
+          onGestureEvent={e => {
+            const value = height - e.nativeEvent.translationY
+            set({ value, config: { duration: 50 } })
           }}
         >
-          <TouchableOpacity activeOpacity={1} onPress={() => resetState()}>
-            <View
+          <View style={{ flex: 1, height: '100%', width: '100%' }}>
+            <TouchableOpacity
+              style={{ flex: 1, height: '100%', width: '100%' }}
+              activeOpacity={1}
+              onPress={() => resetState()}
+            >
+              <View
+                style={{
+                  opacity: 0.8,
+                  zIndex: 1,
+                  height: '100%',
+                  width: '100%',
+                  flex: 1,
+                  backgroundColor: 'black',
+                  position: 'absolute',
+                }}
+              />
+            </TouchableOpacity>
+            <AnimatedContentContainer
               style={{
-                opacity: 0.8,
-                zIndex: 1,
-                height: '100%',
-                width: '100%',
-                flex: 1,
-                backgroundColor: 'black',
+                height,
+                bottom: spring.value.interpolate({
+                  range: [0, height],
+                  output: [-height, 0],
+                  extrapolate: 'clamp',
+                } as any),
                 position: 'absolute',
+                zIndex: 3,
+                width: '100%',
               }}
-            />
-          </TouchableOpacity>
-          <AnimatedContentContainer
-            style={{
-              height,
-              bottom: spring.value.interpolate({
-                range: [0, height],
-                output: [-height, 0],
-                extrapolate: 'clamp',
-              } as any),
-              paddingTop: 25,
-              position: 'absolute',
-              zIndex: 3,
-              width: '100%',
-            }}
-          >
-            {content}
-          </AnimatedContentContainer>
-        </AnimatedContainer>
-      </PanGestureHandler>
+            >
+              {header}
+              {content}
+            </AnimatedContentContainer>
+          </View>
+        </PanGestureHandler>
+      </AnimatedContainer>
     </ModalProviderContext.Provider>
   )
 }

@@ -1174,6 +1174,11 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
+"@react-native-community/masked-view@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.5.tgz#25421be6cd943a4b1660b62cfbcd45be8891462c"
+  integrity sha512-Lj1DzfCmW0f4HnmHtEuX8Yy2f7cnUA8r5KGGUuDDGtQt1so6QJkKeUmsnLo2zYDtsF8due6hvIL06Vdo5xxuLQ==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -4578,10 +4583,10 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-bottom-modal@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-bottom-modal/-/react-native-bottom-modal-0.5.1.tgz#649edce91ce85a24f23864dc5ebf254ff1772f77"
-  integrity sha512-ehCgsE79uSp+3BHwBx2RnbXlWyg5ww1Ug89Tqk1j5+YWIdkW1IxbrotaCM2QxH78Y8yE8kyzVXG7R6qQeqH8WQ==
+react-native-bottom-modal@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-bottom-modal/-/react-native-bottom-modal-0.5.3.tgz#349e116c0429c36f74d4263cce690017ac24e272"
+  integrity sha512-hP10DvsPGhpz2kj8jEHovYhPZnKxmnzMOugLeJFwVhagMLI2mnNc9IDbZaGDUPL9FVrRprwA9x0gSUj62npMcw==
 
 react-native-gesture-handler@~1.5.0:
   version "1.5.6"

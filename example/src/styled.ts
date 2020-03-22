@@ -14,3 +14,15 @@ export const StyledModal = styled(Surface)`
   border-top-right-radius: 20px;
   padding: 20px;
 `
+export const Handle = styled(Surface)`
+  height: 8px;
+  width: 50px;
+  border-radius: 8px;
+`
+
+export const HandleContainer = styled(View)`
+  width: 100%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+`
