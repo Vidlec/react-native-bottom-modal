@@ -64,7 +64,7 @@ export const BottomModalProvider: React.FC = ({ children }) => {
         style={{
           opacity: spring.opacity,
           display: spring.opacity.interpolate(v => (v > 0 ? 'flex' : 'none')),
-          zIndex: 1,
+          zIndex: 999,
           height: '100%',
           width: '100%',
           flex: 1,
