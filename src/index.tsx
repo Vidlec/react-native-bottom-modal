@@ -61,6 +61,7 @@ export const BottomModalProvider: React.FC = ({ children }) => {
     <ModalProviderContext.Provider value={{ showModal, closeModal }}>
       {children}
       <AnimatedContainer
+        pointerEvents={content ? undefined : 'none'}
         style={{
           opacity: spring.opacity,
           display: spring.opacity.interpolate(v => (v > 0 ? 'flex' : 'none')),
